@@ -1,23 +1,26 @@
 package dev.danvega.blogjdbc.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public final class Post {
-    @Id @JsonIgnore
-    private Integer id;
-    private String title;
-    private String content;
-    private LocalDateTime publishedOn;
-    private LocalDateTime updatedOn;
-    private final Set<Comment> comments = new HashSet<>();
-    private AggregateReference<Author,Integer> author;
+public class Post {
+    @Id
+    Integer id;
+    String title;
+    String content;
+    LocalDateTime publishedOn;
+    LocalDateTime updatedOn;
+
+    @MappedCollection(idColumn = "POST")
+    Set<Comment> comments = new HashSet<>();
+
+    AggregateReference<Author,Integer> author;
 
     public Post(String title,String content, AggregateReference<Author,Integer> author) {
         this.title = title;
