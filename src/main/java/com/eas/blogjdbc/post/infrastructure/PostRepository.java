@@ -1,14 +1,14 @@
-package dev.danvega.blogjdbc.repository;
+package com.eas.blogjdbc.post.infrastructure;
 
-import dev.danvega.blogjdbc.dto.PostView;
-import dev.danvega.blogjdbc.dto.PostViewNew;
-import dev.danvega.blogjdbc.model.Post;
+import com.eas.blogjdbc.post.application.dto.PostView;
+import com.eas.blogjdbc.post.application.dto.PostViewNew;
+import com.eas.blogjdbc.post.domain.Post;
 import org.springframework.data.jdbc.repository.query.Query;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.ListCrudRepository;
 
 import java.util.List;
 
-public interface PostRepository extends CrudRepository<Post,Integer> {
+public interface PostRepository extends ListCrudRepository<Post,Integer> {
 
     @Query("SELECT * FROM POST WHERE author = :id")
     List<Post> findByAuthor(Integer id);

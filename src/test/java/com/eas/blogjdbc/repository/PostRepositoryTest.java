@@ -1,8 +1,10 @@
-package dev.danvega.blogjdbc.repository;
+package com.eas.blogjdbc.repository;
 
-import dev.danvega.blogjdbc.model.Author;
-import dev.danvega.blogjdbc.model.Comment;
-import dev.danvega.blogjdbc.model.Post;
+import com.eas.blogjdbc.post.domain.Comment;
+import com.eas.blogjdbc.post.domain.Post;
+import com.eas.blogjdbc.post.infrastructure.PostRepository;
+import com.eas.blogjdbc.user.domain.Author;
+import com.eas.blogjdbc.user.infrastructure.AuthorRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +28,7 @@ class PostRepositoryTest {
 
     @BeforeEach
     void setUp() {
-        author = AggregateReference.to(authorRepository.save(new Author(null, "Dan", "Vega", "danvega@gmail.com", "dvega")).id());
+        author = AggregateReference.to(authorRepository.save(new Author(null, "Dan", "Vega", "danvega@gmail.com", "dvega")).getId());
     }
 
     @Test
@@ -49,14 +51,13 @@ class PostRepositoryTest {
     @Test
     void shouldPostWithComments() {
         Post post = new Post( "TEST", "...",null);
-        post.addComments(List.of(new Comment("Dan","test comment"),new Comment("Dan","test comment 2")));
+        post.addComments(List.of(new Comment("test comment", null),new Comment("test comment 2", null)));
         posts.save(post);
 
         Post p = posts.findById(post.getId()).orElse(null);
         assertNotNull(p);
         assertNotNull(p.getId());
         assertEquals(2,p.getComments().size());
-        assertEquals("Dan",p.getComments().iterator().next().getName());
     }
 
     @Test

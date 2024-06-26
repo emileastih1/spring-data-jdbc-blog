@@ -1,7 +1,7 @@
-package dev.danvega.blogjdbc.dto;
+package com.eas.blogjdbc.post.application.dto;
 
-import dev.danvega.blogjdbc.model.Author;
-import dev.danvega.blogjdbc.model.Post;
+import com.eas.blogjdbc.post.domain.Post;
+import com.eas.blogjdbc.user.domain.Author;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.relational.core.mapping.Embedded;
 

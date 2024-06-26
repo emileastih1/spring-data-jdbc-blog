@@ -1,6 +1,7 @@
-package dev.danvega.blogjdbc.dto;
+package com.eas.blogjdbc.post.application.dto;
 
-import dev.danvega.blogjdbc.model.Author;
+
+import com.eas.blogjdbc.user.domain.Author;
 
 import java.time.LocalDateTime;
 

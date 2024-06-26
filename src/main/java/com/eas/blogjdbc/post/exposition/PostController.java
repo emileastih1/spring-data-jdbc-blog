@@ -1,11 +1,11 @@
-package dev.danvega.blogjdbc.controller;
+package com.eas.blogjdbc.post.exposition;
 
-import dev.danvega.blogjdbc.dto.PostDetails;
-import dev.danvega.blogjdbc.dto.PostView;
-import dev.danvega.blogjdbc.dto.PostViewNew;
-import dev.danvega.blogjdbc.model.Post;
-import dev.danvega.blogjdbc.repository.AuthorRepository;
-import dev.danvega.blogjdbc.repository.PostRepository;
+import com.eas.blogjdbc.post.application.dto.PostDetails;
+import com.eas.blogjdbc.post.application.dto.PostView;
+import com.eas.blogjdbc.post.application.dto.PostViewNew;
+import com.eas.blogjdbc.post.domain.Post;
+import com.eas.blogjdbc.post.infrastructure.PostRepository;
+import com.eas.blogjdbc.user.infrastructure.AuthorRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
