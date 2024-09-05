@@ -22,12 +22,15 @@ public class Post {
     LocalDateTime publishedOn;
     LocalDateTime updatedOn;
 
+    // This is how we handle the relationship within an aggregate root
     @MappedCollection(idColumn = "POST_ID")
     Set<Comment> comments = new HashSet<>();
 
+    // This is how we handle the relationship within an aggregate root
     @MappedCollection(idColumn = "POST_ID")
     Set<Like> likes = new HashSet<>();
 
+    // This is how we handle the relationship between aggregates
     AggregateReference<Author,Integer> author;
 
     public Post(String title,String content, AggregateReference<Author,Integer> author) {
@@ -44,6 +47,7 @@ public class Post {
 
     public void addComment(Comment comment) {
         comments.add(comment);
+        //comment.setPost(this);
     }
 
     public void like(Like like){

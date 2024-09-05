@@ -23,7 +23,7 @@ public class PostController {
     }
 
     @GetMapping
-    public Iterable<Post> findAll() {
+    public List<Post> findAll() {
         return postRepository.findAll();
     }
 

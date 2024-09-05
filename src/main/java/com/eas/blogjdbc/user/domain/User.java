@@ -21,7 +21,11 @@ public class User {
     @Column(value = "PROFILE_PICTURE")
     private String profilePicture;
 
-    public User(String firstname, String lastname, String email, String username, int userType, String profilePicture) {
+    public User(String firstname, String lastname, String email, String username, String profilePicture){
+        this(firstname, lastname, email, username, UserType.USER.value, profilePicture);
+    }
+
+    protected User(String firstname, String lastname, String email, String username, int userType, String profilePicture) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
