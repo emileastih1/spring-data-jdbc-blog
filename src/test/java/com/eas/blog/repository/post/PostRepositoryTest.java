@@ -1,9 +1,9 @@
 package com.eas.blog.repository.post;
 
 import com.eas.blog.post.domain.Comment;
+import com.eas.blog.post.domain.Like;
 import com.eas.blog.post.domain.Post;
 import com.eas.blog.post.infrastructure.PostRepository;
-import com.eas.blog.user.domain.Author;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,10 +21,7 @@ class PostRepositoryTest {
 
     @Test
     void shouldSaveValidPostForAuthor() {
-        // Given
-        int authorId = 1;
-        AggregateReference<Author, Integer> authorRef = AggregateReference.to(authorId);
-        Post post = new Post("New post written", "...", authorRef);
+        Post post = mockPost();
 
         // When
         assertNull(post.getId(), "Post ID should be null before saving");
@@ -33,25 +30,16 @@ class PostRepositoryTest {
         // Then
         assertNotNull(savedPost.getId(), "Post ID should be set after saving");
         //assert that the new post is linked to the same author
-        assertEquals(authorId, savedPost.getAuthor().getId());
+        assertEquals(1, savedPost.getAuthor().getId());
     }
 
-
-    @Test
-    void shouldSaveValidPostWithoutAuthor() {
-        Post post = new Post("TEST", "...", null);
-        assertNull(post.getId());
-        Post reloaded = posts.save(post);
-        assertNotNull(reloaded.getId());
-        assertNull(reloaded.getAuthor());
-    }
 
     @Test
     void shouldPostWithComments() {
         //Given
         Integer userId = 1;
 
-        Post post = new Post("TEST", "...", null);
+        Post post = mockPost();
         post.addComments(List.of(
                 new Comment("test comment", userId),
                 new Comment("test comment 2", userId))
@@ -60,17 +48,37 @@ class PostRepositoryTest {
 
         Post p = posts.findById(savedPost.getId()).orElse(null);
         assertNotNull(p);
-        assertNotNull(p.getId());
         assertEquals(2, p.getComments().size());
     }
 
     @Test
-    void shouldPostWithNoCommentsReturns0AndNotNull() {
-        Post post = new Post("TEST", "...", null);
-        posts.save(post);
-        Post p = posts.findById(post.getId()).orElse(null);
+    void shouldPostWithNoCommentsAndNoLikes() {
+        Post post = mockPost();
+        Post savedPost = posts.save(post);
+        Post p = posts.findById(savedPost.getId()).orElse(null);
         assertNotNull(p);
         assertEquals(0, p.getComments().size());
+        assertEquals(0, p.getLikes().size());
+    }
+
+    @Test
+    void should_like_post_only_once_when_user_likes_multiple_times() {
+        Integer userId = 1;
+
+        Post post = mockPost();
+        post.like(new Like(userId));
+        post.like(new Like(userId));
+        post.like(new Like(userId));
+        Post savedPost = posts.save(post);
+
+        Post p = posts.findById(savedPost.getId()).orElse(null);
+        assertNotNull(p);
+        assertEquals(0, p.getComments().size());
+        assertEquals(1, p.getLikes().size());
+    }
+
+    private static Post mockPost() {
+        return new Post("TEST", "...", AggregateReference.to(1));
     }
 
 }

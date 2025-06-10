@@ -2,9 +2,13 @@ package com.eas.blog.post.application.dto;
 
 
 import com.eas.blog.user.domain.Author;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 public class PostView {
     Integer id;
     String title;
@@ -17,46 +21,6 @@ public class PostView {
         this.title = title;
         this.content = content;
         this.publishedOn = publishedOn;
-        this.author = author;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public LocalDateTime getPublishedOn() {
-        return publishedOn;
-    }
-
-    public void setPublishedOn(LocalDateTime publishedOn) {
-        this.publishedOn = publishedOn;
-    }
-
-    public Author getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Author author) {
         this.author = author;
     }
 }
