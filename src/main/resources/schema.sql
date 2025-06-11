@@ -25,8 +25,8 @@ create table Post (
     content text not null,
     published_on timestamp not null,
     updated_on timestamp,
-    author int,
-    foreign key (author) references Author(id)
+    author_id int,
+    foreign key (author_id) references Author(id)
 );
 
 -- comment
