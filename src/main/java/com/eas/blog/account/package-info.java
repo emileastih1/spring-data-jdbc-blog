@@ -1,6 +1,6 @@
 @ApplicationModule(
-        type = ApplicationModule.Type.OPEN,
-        allowedDependencies = {"content::contentAPI", "content::contentDTO"}
+        type = ApplicationModule.Type.OPEN
+        //allowedDependencies = {"content::impl", "content::contentDTO"}
         //allowedDependencies = "content")
 )
 package com.eas.blog.account;

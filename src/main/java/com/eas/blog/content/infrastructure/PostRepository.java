@@ -1,12 +1,14 @@
 package com.eas.blog.content.infrastructure;
 
 import com.eas.blog.account.domain.Author;
+import com.eas.blog.content.dto.PostSimpleView;
 import com.eas.blog.content.dto.PostView;
 import com.eas.blog.content.dto.PostViewNew;
 import com.eas.blog.content.domain.Post;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.ListCrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -38,5 +40,13 @@ public interface PostRepository extends ListCrudRepository<Post, Integer> {
             """)
     List<PostViewNew> findAllPostsWithAuthorDetailsNew();
 
+
+    @Query("""
+        SELECT p.id, p.title, p.content, p.published_on, p.author_id
+        FROM Post p
+        WHERE p.author_id = :authorId
+        ORDER BY p.created_on DESC
+    """)
+    List<PostSimpleView> findSimpleViewsByAuthorOrderedByDateDesc(@Param("authorId") int authorId);
 
 }

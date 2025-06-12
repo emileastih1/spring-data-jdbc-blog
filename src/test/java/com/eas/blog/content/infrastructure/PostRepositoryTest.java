@@ -1,9 +1,9 @@
 package com.eas.blog.content.infrastructure;
 
+import com.eas.blog.account.AuthorManagementApi;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Like;
 import com.eas.blog.content.domain.Post;
-import com.eas.blog.account.api.AuthorManagementApi;
 import com.eas.blog.account.application.dto.AuthorBasicInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ class PostRepositoryTest {
     private PostRepository postRepository;
 
     @Autowired
-    private AuthorManagementApi authorManagement;
+    private AuthorManagementApi authorManagementApi;
 
     @Test
     void shouldSaveValidPostForAuthor() {
@@ -92,7 +92,7 @@ class PostRepositoryTest {
                 postRepository.findById(1)
                 .map(Post::getAuthorId)
                 .map(AggregateReference ::getId)
-                .map(authorManagement::findById)
+                .map(authorManagementApi::findById)
                 .orElse(null);
 
         assertNotNull(authorBasicInfo, "Author should not be null");

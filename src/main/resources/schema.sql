@@ -23,6 +23,7 @@ create table Post (
     version int,
     title varchar(255) not null,
     content text not null,
+    created_on timestamp not null default current_timestamp,
     published_on timestamp not null,
     updated_on timestamp,
     author_id int,

@@ -1,5 +1,6 @@
-package com.eas.blog.content.api;
+package com.eas.blog.content.impl;
 
+import com.eas.blog.content.ContentManagementApi;
 import com.eas.blog.content.dto.PostSimpleView;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Post;
@@ -10,11 +11,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ContentManagementApi {
+public class ContentManagementApiImpl implements ContentManagementApi {
     public final PostRepository postRepository;
 
     public Post comment(Comment comment) {
@@ -26,5 +28,12 @@ public class ContentManagementApi {
                 .stream()
                 .map(post -> new PostSimpleView(post.getId(), post.getTitle(), post.getContent(), post.getPublishedOn(), post.getAuthorId().getId()))
                 .toList();
+    }
+
+    public List<PostSimpleView> findLatestPostsByAuthor(Integer authorId, Integer limit) {
+        List<PostSimpleView> posts = postRepository.findSimpleViewsByAuthorOrderedByDateDesc(authorId);
+        return Optional.ofNullable(limit)
+                .map(l -> posts.stream().limit(l).toList())
+                .orElse(posts);
     }
 }
