@@ -1,6 +1,6 @@
 package com.eas.blog.account.exposition;
 
-import com.eas.blog.account.UserManagement;
+import com.eas.blog.account.api.UserManagementApi;
 import com.eas.blog.account.domain.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/users")
 class UserApi {
 
-    private final UserManagement userManagement;
+    private final UserManagementApi userManagement;
 
     @GetMapping
     List<User> findAllAuthors() {

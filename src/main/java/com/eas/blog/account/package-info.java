@@ -1,7 +1,9 @@
-@org.springframework.modulith.ApplicationModule(
+@ApplicationModule(
         type = ApplicationModule.Type.OPEN,
-        allowedDependencies = {"content::dto", "content"}
+        allowedDependencies = {"content::contentAPI", "content::contentDTO"}
+        //allowedDependencies = "content")
 )
 package com.eas.blog.account;
 
 import org.springframework.modulith.ApplicationModule;
+

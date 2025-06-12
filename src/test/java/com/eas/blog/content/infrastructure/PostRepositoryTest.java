@@ -3,7 +3,7 @@ package com.eas.blog.content.infrastructure;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Like;
 import com.eas.blog.content.domain.Post;
-import com.eas.blog.account.AuthorManagement;
+import com.eas.blog.account.api.AuthorManagementApi;
 import com.eas.blog.account.application.dto.AuthorBasicInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +26,7 @@ class PostRepositoryTest {
     private PostRepository postRepository;
 
     @Autowired
-    private AuthorManagement authorManagement;
+    private AuthorManagementApi authorManagement;
 
     @Test
     void shouldSaveValidPostForAuthor() {

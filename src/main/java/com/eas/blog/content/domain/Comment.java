@@ -21,8 +21,8 @@ public final class Comment {
     private Integer userId;
 
     //We marked this as transient because we dont want to persist this to the database
-    @Transient
-    private Post post;
+//    @Transient
+//    private Post post;
 
     public Comment(String content, Integer userId) {
         this.content = content;

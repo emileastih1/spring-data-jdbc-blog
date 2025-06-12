@@ -6,10 +6,11 @@ import org.springframework.modulith.docs.Documenter;
 
 public class ModularityTests {
 
-    ApplicationModules modules = ApplicationModules.of(Application.class);
+    ApplicationModules modules = ApplicationModules.of(BlogApplication.class);
 
     @Test
     void verifiesModularStructure() {
+        modules.forEach(System.out::println);
         modules.verify();
     }
 

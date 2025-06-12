@@ -12,11 +12,11 @@ public class Like {
     @Id
     Integer id;
 
-    @Transient
-    private Post post;
-
-    @Transient
-    private User user;
+//    @Transient
+//    private Post post;
+//
+//    @Transient
+//    private User user;
 
     private final Integer user_id;
 

@@ -1,11 +1,11 @@
-package com.eas.blog.account;
+package com.eas.blog.account.api;
 
 import com.eas.blog.account.application.dto.AuthorBasicInfo;
 import com.eas.blog.account.application.exception.EntityNotFoundException;
 import com.eas.blog.account.application.mappers.AuthorMapper;
 import com.eas.blog.account.domain.Author;
 import com.eas.blog.account.infrastructure.AuthorRepository;
-import com.eas.blog.content.ContentManagement;
+import com.eas.blog.content.api.ContentManagementApi;
 import com.eas.blog.content.dto.PostSimpleView;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,10 +16,10 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class AuthorManagement {
+public class AuthorManagementApi {
     private final AuthorRepository authorRepository;
     private final AuthorMapper  authorMapper;
-    private final ContentManagement contentManagement;
+    private final ContentManagementApi contentManagement;
 
     public List<Author> findAll() {
         return authorRepository.findAll();

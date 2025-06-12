@@ -1,4 +1,4 @@
-package com.eas.blog.account;
+package com.eas.blog.account.api;
 
 import com.eas.blog.account.application.exception.EntityNotFoundException;
 import com.eas.blog.account.domain.User;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class UserManagement {
+public class UserManagementApi {
 
     private final UserRepository userRepository;
 

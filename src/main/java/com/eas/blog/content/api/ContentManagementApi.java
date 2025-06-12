@@ -1,4 +1,4 @@
-package com.eas.blog.content;
+package com.eas.blog.content.api;
 
 import com.eas.blog.content.dto.PostSimpleView;
 import com.eas.blog.content.domain.Comment;
@@ -14,7 +14,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class ContentManagement {
+public class ContentManagementApi {
     public final PostRepository postRepository;
 
     public Post comment(Comment comment) {
