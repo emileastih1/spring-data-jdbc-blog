@@ -1,11 +1,11 @@
 package com.eas.blog.content.exposition;
 
+import com.eas.blog.account.infrastructure.AuthorRepository;
+import com.eas.blog.content.domain.Post;
 import com.eas.blog.content.dto.PostDetails;
 import com.eas.blog.content.dto.PostView;
 import com.eas.blog.content.dto.PostViewNew;
-import com.eas.blog.content.domain.Post;
 import com.eas.blog.content.infrastructure.PostRepository;
-import com.eas.blog.account.infrastructure.AuthorRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class PostController {
 
     @GetMapping("/{id}/details")
     public PostDetails getPostDetails(@PathVariable("id") Post post) {
-        return new PostDetails(post, authorRepository.findById(post.getAuthorId().getId()).get());
+        return new PostDetails(post, authorRepository.findById(post.getMainAuthorId().getId()).get());
     }
 
     @PostMapping

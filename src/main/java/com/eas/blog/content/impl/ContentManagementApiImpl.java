@@ -1,9 +1,9 @@
 package com.eas.blog.content.impl;
 
 import com.eas.blog.content.ContentManagementApi;
-import com.eas.blog.content.dto.PostSimpleView;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Post;
+import com.eas.blog.content.dto.PostSimpleView;
 import com.eas.blog.content.infrastructure.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
@@ -24,9 +24,9 @@ public class ContentManagementApiImpl implements ContentManagementApi {
     }
 
     public List<PostSimpleView> findAllPostsForAuthor(Integer authorId) {
-        return postRepository.findByAuthorId(AggregateReference.to(authorId))
+        return postRepository.findByMainAuthorId(AggregateReference.to(authorId))
                 .stream()
-                .map(post -> new PostSimpleView(post.getId(), post.getTitle(), post.getContent(), post.getPublishedOn(), post.getAuthorId().getId()))
+                .map(post -> new PostSimpleView(post.getId(), post.getTitle(), post.getContent(), post.getPublishedOn(), post.getMainAuthorId().getId()))
                 .toList();
     }
 

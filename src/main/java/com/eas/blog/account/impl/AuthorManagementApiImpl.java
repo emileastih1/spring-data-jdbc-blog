@@ -19,7 +19,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AuthorManagementApiImpl implements AuthorManagementApi {
     private final AuthorRepository authorRepository;
-    private final AuthorMapper  authorMapper;
+    private final AuthorMapper authorMapper;
     private final ContentManagementApi contentManagementApi;
 
     public List<Author> findAll() {
@@ -44,7 +44,6 @@ public class AuthorManagementApiImpl implements AuthorManagementApi {
     public List<PostSimpleView> retrieveLatestPostsByAuthor(Integer authorId, Integer limit) {
         return contentManagementApi.findLatestPostsByAuthor(authorId, limit);
     }
-
 
 
 }

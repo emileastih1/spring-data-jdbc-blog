@@ -2,7 +2,6 @@ package com.eas.blog.content.domain;
 
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 
 import java.time.LocalDateTime;
 

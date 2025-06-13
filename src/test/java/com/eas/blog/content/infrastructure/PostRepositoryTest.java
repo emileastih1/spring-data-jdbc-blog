@@ -1,15 +1,16 @@
 package com.eas.blog.content.infrastructure;
 
 import com.eas.blog.account.AuthorManagementApi;
+import com.eas.blog.account.application.dto.AuthorBasicInfo;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Like;
 import com.eas.blog.content.domain.Post;
-import com.eas.blog.account.application.dto.AuthorBasicInfo;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -39,7 +40,7 @@ class PostRepositoryTest {
         // Then
         assertNotNull(savedPost.getId(), "Post ID should be set after saving");
         //assert that the new post is linked to the same author
-        assertEquals(1, savedPost.getAuthorId().getId());
+        assertEquals(1, savedPost.getMainAuthorId().getId());
     }
 
 
@@ -87,13 +88,13 @@ class PostRepositoryTest {
     }
 
     @Test
-    void should_retrieve_post_author(){
+    void should_retrieve_post_author() {
         AuthorBasicInfo authorBasicInfo =
                 postRepository.findById(1)
-                .map(Post::getAuthorId)
-                .map(AggregateReference ::getId)
-                .map(authorManagementApi::findById)
-                .orElse(null);
+                        .map(Post::getMainAuthorId)
+                        .map(AggregateReference::getId)
+                        .map(authorManagementApi::findById)
+                        .orElse(null);
 
         assertNotNull(authorBasicInfo, "Author should not be null");
         assertEquals(1, authorBasicInfo.id());
@@ -102,7 +103,7 @@ class PostRepositoryTest {
     }
 
     @Test
-    void given_valid_post_when_findById_should_fetch_comments_and_likes(){
+    void given_valid_post_when_findById_should_fetch_comments_and_likes() {
         Post post = postRepository.findById(1)
                 .orElse(null);
 
@@ -116,35 +117,35 @@ class PostRepositoryTest {
     void given_authorId_should_return_all_posts_for_author_using_native_query() {
         Integer authorId = 1;
 
-        List<Post> posts = postRepository.findByAuthorId(authorId);
+        List<Post> posts = postRepository.findByMainAuthorId(authorId);
 
         assertThat(posts).isNotEmpty();
-        assertThat(posts).allMatch(p -> Objects.equals(p.getAuthorId().getId(), authorId));
+        assertThat(posts).allMatch(p -> Objects.equals(p.getMainAuthorId().getId(), authorId));
     }
 
     @Test
     void given_authorId_should_return_all_posts_for_author_using_builtin_query_jdbc() {
         Integer authorId = 1;
 
-        List<Post> posts = postRepository.findAllByAuthorId(authorId);
+        List<Post> posts = postRepository.findAllByMainAuthorId(authorId);
 
         assertThat(posts).isNotEmpty();
-        assertThat(posts).allMatch(p -> Objects.equals(p.getAuthorId().getId(), authorId));
+        assertThat(posts).allMatch(p -> Objects.equals(p.getMainAuthorId().getId(), authorId));
     }
 
     @Test
     void given_authorId_should_return_all_posts_for_author_using_aggregate_reference_jdbc() {
         Integer authorId = 1;
 
-        List<Post> posts = postRepository.findByAuthorId(AggregateReference.to(authorId));
+        List<Post> posts = postRepository.findByMainAuthorId(AggregateReference.to(authorId));
 
         assertThat(posts).isNotEmpty();
-        assertThat(posts).allMatch(p -> Objects.equals(p.getAuthorId().getId(), authorId));
+        assertThat(posts).allMatch(p -> Objects.equals(p.getMainAuthorId().getId(), authorId));
     }
 
 
     private static Post mockPost() {
-        return new Post("TEST", "...", AggregateReference.to(1));
+        return new Post("TEST", "...", LocalDateTime.now(), AggregateReference.to(1));
     }
 
 }

@@ -1,20 +1,47 @@
 package com.eas.blog.account.infrastructure;
 
+import com.eas.blog.account.domain.Author;
+import org.assertj.core.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.List;
 
-@SpringBootTest
+@DataJdbcTest
+@Transactional
 class AuthorRepositoryTest {
 
     @Autowired
-    AuthorRepository authors;
+    AuthorRepository authorRepository;
+
+    @BeforeEach
+    void setup() {
+        Author author = new Author(
+                "Emile",
+                "emile@example.com",
+                "Tech Lead & Architect",
+                "profile.png"
+        );
+        authorRepository.save(author);
+    }
 
     @Test
     void shouldReturnAllAuthors() {
-        long count = authors.findAll().size();
-        assertEquals(2, count);
+        List<Author> authors = authorRepository.findAll();
+        Assertions.assertThat(authors)
+                .isNotEmpty();
+    }
+
+    @Test
+    void should_return_all_authors_and_check_result() {
+        List<Author> authors = authorRepository.findAll();
+        Assertions.assertThat(authors)
+                .isNotEmpty()
+                .extracting(Author::getName)
+                .containsAnyOf("Emile");
     }
 }

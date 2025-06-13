@@ -26,8 +26,16 @@ create table Post (
     created_on timestamp not null default current_timestamp,
     published_on timestamp not null,
     updated_on timestamp,
-    author_id int,
-    foreign key (author_id) references Author(id)
+    main_author_id int,
+    foreign key (main_author_id) references Author(id)
+);
+
+create table Post_Editor (
+      id int auto_increment primary key ,
+      post_id int not null ,
+      editor_id int not null ,
+      foreign key (post_id) references Post(id),
+      foreign key (editor_id) references Author(id)
 );
 
 -- comment

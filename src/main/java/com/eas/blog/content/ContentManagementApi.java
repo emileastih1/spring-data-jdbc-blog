@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface ContentManagementApi {
     List<PostSimpleView> findAllPostsForAuthor(Integer authorId);
+
     List<PostSimpleView> findLatestPostsByAuthor(Integer authorId, Integer limit);
 }

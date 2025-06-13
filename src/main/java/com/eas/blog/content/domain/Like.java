@@ -1,9 +1,7 @@
 package com.eas.blog.content.domain;
 
-import com.eas.blog.account.domain.User;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data

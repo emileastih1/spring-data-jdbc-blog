@@ -15,6 +15,6 @@ spring:
     generate-unique-name: false
     name: blog
 
-# This will create a table (event_publication) to persist the events published in the database
+  # This will create a table (event_publication) to persist the events published in the database
   modulith:
     events.jdbc-schema-initialization.enabled: true
