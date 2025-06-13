@@ -1,0 +1,53 @@
+@startuml DomainModel
+
+class User {
+  - id : Integer
+  - firstname : String
+  - lastname : String
+  - email : String
+  - username : String
+}
+
+class Author {
+  - id : Integer
+  - name : String
+  - email : String
+  - bio : String
+  - profilePicture : String
+}
+
+class Post {
+  - id : Integer
+  - title : String
+  - content : String
+  - publishedOn : LocalDateTime
+  - createdOn : LocalDateTime
+  - mainAuthorId : AggregateReference<Author, Integer>
+  - editors : Set<PostEditor>
+}
+
+class PostEditor {
+  - authorId : AggregateReference<Author, Integer>
+}
+
+class Comment {
+  - id : Integer
+  - postId : Integer
+  - userId : Integer
+  - content : String
+}
+
+class PostLike {
+  - postId : Integer
+  - userId : Integer
+}
+
+Post "1" --> "1" Author : mainAuthorId
+Post "1" --> "*" PostEditor : editors
+PostEditor "1" --> "1" Author : authorId
+Post "1" --> "*" Comment
+Post "1" --> "*" PostLike
+User "1" --> "*" Comment
+User "1" --> "*" PostLike
+
+@enduml

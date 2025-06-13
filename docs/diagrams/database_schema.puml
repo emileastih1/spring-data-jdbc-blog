@@ -1,0 +1,58 @@
+@startuml DatabaseSchema
+
+entity "Users" as Users {
+  * id : INT
+  --
+  firstname : VARCHAR
+  lastname : VARCHAR
+  email : VARCHAR
+  username : VARCHAR
+}
+
+entity "Author" as Author {
+  * id : INT
+  --
+  name : VARCHAR
+  email : VARCHAR
+  bio : VARCHAR
+  profile_picture : VARCHAR
+}
+
+entity "Post" as Post {
+  * id : INT
+  --
+  version : INT
+  title : VARCHAR
+  content : TEXT
+  published_on : TIMESTAMP
+  created_on : TIMESTAMP
+  author_id : INT
+}
+
+entity "Post_Editor" as PostEditor {
+  * post_id : INT
+  * author_id : INT
+}
+
+entity "Comment" as Comment {
+  * id : INT
+  --
+  post_id : INT
+  user_id : INT
+  content : TEXT
+}
+
+entity "PostLike" as PostLike {
+  * post_id : INT
+  * user_id : INT
+}
+
+Users ||--o{ Comment : "writes"
+Users ||--o{ PostLike : "likes"
+Author ||--o{ Post : "writes"
+Post ||--o{ Comment : "has"
+Post ||--o{ PostLike : "has"
+Post ||--o{ PostEditor : "edited by"
+Author ||--o{ PostEditor : "edits"
+
+@enduml
