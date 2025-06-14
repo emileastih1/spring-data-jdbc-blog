@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class AuthorManagementApiImplTest {
 
     @Autowired
-    AuthorManagementApiImpl apiImplementation;
+    AuthorApiImpl apiImplementation;
 
     @Test
     void shouldRetrieveLatestPostsByAuthorWithLimit() {

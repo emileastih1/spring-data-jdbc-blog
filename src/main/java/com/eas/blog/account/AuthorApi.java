@@ -6,11 +6,11 @@ import com.eas.blog.content.dto.PostSimpleView;
 
 import java.util.List;
 
-public interface AuthorManagementApi {
+public interface AuthorApi {
 
-    List<Author> findAll();
+    List<AuthorBasicInfo> findAll();
 
-    Author save(Author author);
+    AuthorBasicInfo save(Author author);
 
     AuthorBasicInfo findById(Integer authorId);
 

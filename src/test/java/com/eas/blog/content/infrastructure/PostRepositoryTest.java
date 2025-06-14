@@ -1,6 +1,6 @@
 package com.eas.blog.content.infrastructure;
 
-import com.eas.blog.account.AuthorManagementApi;
+import com.eas.blog.account.AuthorApi;
 import com.eas.blog.account.application.dto.AuthorBasicInfo;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Like;
@@ -27,7 +27,7 @@ class PostRepositoryTest {
     private PostRepository postRepository;
 
     @Autowired
-    private AuthorManagementApi authorManagementApi;
+    private AuthorApi authorManagementApi;
 
     @Test
     void shouldSaveValidPostForAuthor() {

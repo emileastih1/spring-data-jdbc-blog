@@ -1,6 +1,6 @@
 package com.eas.blog.content;
 
-import com.eas.blog.account.impl.AuthorManagementApiImpl;
+import com.eas.blog.account.impl.AuthorApiImpl;
 import com.eas.blog.content.dto.PostSimpleView;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 class ContentManagementTest {
 
     @Autowired
-    AuthorManagementApiImpl authorManagement;
+    AuthorApiImpl authorManagement;
 
     @Test
     void given_authorId_should_return_all_posts_for_author() {

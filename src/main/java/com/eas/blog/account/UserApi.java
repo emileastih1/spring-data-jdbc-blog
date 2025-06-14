@@ -4,7 +4,7 @@ import com.eas.blog.account.domain.User;
 
 import java.util.List;
 
-public interface UserManagementApi {
+public interface UserApi {
 
     List<User> findAll();
 
