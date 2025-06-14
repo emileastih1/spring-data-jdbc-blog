@@ -1,4 +1,4 @@
-package com.eas.blog.content.infrastructure;
+package com.eas.blog.content.repository;
 
 import com.eas.blog.account.AuthorApi;
 import com.eas.blog.account.application.dto.AuthorBasicInfo;

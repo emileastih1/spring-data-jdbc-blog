@@ -1,10 +1,10 @@
 package com.eas.blog.content;
 
 import com.eas.blog.account.domain.Author;
-import com.eas.blog.account.infrastructure.AuthorRepository;
+import com.eas.blog.account.repository.AuthorRepository;
 import com.eas.blog.content.domain.Post;
 import com.eas.blog.content.domain.PostEditor;
-import com.eas.blog.content.infrastructure.PostRepository;
+import com.eas.blog.content.repository.PostRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

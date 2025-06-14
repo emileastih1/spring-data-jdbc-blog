@@ -4,7 +4,7 @@ import com.eas.blog.account.application.dto.AuthorBasicInfo;
 import com.eas.blog.account.application.exception.EntityNotFoundException;
 import com.eas.blog.account.application.mappers.AuthorMapper;
 import com.eas.blog.account.domain.Author;
-import com.eas.blog.account.infrastructure.AuthorRepository;
+import com.eas.blog.account.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

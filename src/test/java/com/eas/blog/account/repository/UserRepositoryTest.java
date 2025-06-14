@@ -1,4 +1,4 @@
-package com.eas.blog.account.infrastructure;
+package com.eas.blog.account.repository;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

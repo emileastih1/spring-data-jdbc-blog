@@ -1,4 +1,4 @@
-package com.eas.blog.content.infrastructure;
+package com.eas.blog.content.repository;
 
 import com.eas.blog.account.domain.Author;
 import com.eas.blog.content.domain.Post;

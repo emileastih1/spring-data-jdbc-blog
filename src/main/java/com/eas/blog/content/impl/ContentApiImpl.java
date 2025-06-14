@@ -4,7 +4,7 @@ import com.eas.blog.content.ContentApi;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Post;
 import com.eas.blog.content.dto.PostSimpleView;
-import com.eas.blog.content.infrastructure.PostRepository;
+import com.eas.blog.content.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
 import org.springframework.stereotype.Service;

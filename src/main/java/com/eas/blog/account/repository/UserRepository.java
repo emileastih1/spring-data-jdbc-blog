@@ -1,4 +1,4 @@
-package com.eas.blog.account.infrastructure;
+package com.eas.blog.account.repository;
 
 import com.eas.blog.account.domain.User;
 import org.springframework.data.repository.ListCrudRepository;

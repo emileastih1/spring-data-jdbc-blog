@@ -1,11 +1,11 @@
 package com.eas.blog.content.exposition;
 
-import com.eas.blog.account.infrastructure.AuthorRepository;
+import com.eas.blog.account.repository.AuthorRepository;
 import com.eas.blog.content.domain.Post;
 import com.eas.blog.content.dto.PostDetails;
 import com.eas.blog.content.dto.PostView;
 import com.eas.blog.content.dto.PostViewNew;
-import com.eas.blog.content.infrastructure.PostRepository;
+import com.eas.blog.content.repository.PostRepository;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

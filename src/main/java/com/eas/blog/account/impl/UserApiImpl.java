@@ -3,7 +3,7 @@ package com.eas.blog.account.impl;
 import com.eas.blog.account.UserApi;
 import com.eas.blog.account.application.exception.EntityNotFoundException;
 import com.eas.blog.account.domain.User;
-import com.eas.blog.account.infrastructure.UserRepository;
+import com.eas.blog.account.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
