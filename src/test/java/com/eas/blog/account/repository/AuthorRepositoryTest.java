@@ -1,16 +1,19 @@
 package com.eas.blog.account.repository;
 
 import com.eas.blog.account.domain.Author;
+import com.eas.blog.config.TestcontainersPostgresInitializer;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.data.jdbc.DataJdbcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@DataJdbcTest
+@SpringBootTest
+@ContextConfiguration(initializers = TestcontainersPostgresInitializer.class)
 @Transactional
 class AuthorRepositoryTest {
 

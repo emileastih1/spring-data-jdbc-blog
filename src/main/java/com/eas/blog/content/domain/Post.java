@@ -16,7 +16,7 @@ import java.util.Set;
 
 @Getter
 @Setter
-@Table("POST")
+@Table("post")
 public class Post {
     @Id
     Integer id;
@@ -29,13 +29,13 @@ public class Post {
     /**
      * This is how we handle the relationship (ONE_TO_MANY) within an aggregate root
      */
-    @MappedCollection(idColumn = "POST_ID")
+    @MappedCollection(idColumn = "post_id")
     Set<Comment> comments = new HashSet<>();
 
     /**
      * This is how we handle the relationship (ONE_TO_MANY) within an aggregate root
      */
-    @MappedCollection(idColumn = "POST_ID")
+    @MappedCollection(idColumn = "post_id")
     Set<Like> likes = new HashSet<>();
 
     /**
@@ -47,7 +47,7 @@ public class Post {
      */
     AggregateReference<Author, Integer> mainAuthorId;
 
-    @MappedCollection(idColumn = "POST_ID")
+    @MappedCollection(idColumn = "post_id")
     Set<PostEditor> editors = new HashSet<>();
 
     public Post(String title, String content, LocalDateTime publishedOn, AggregateReference<Author, Integer> mainAuthorId) {

@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 @Data
-@Table("POSTLIKE")
+@Table("postlike")
 public class Like {
     @Id
     Integer id;

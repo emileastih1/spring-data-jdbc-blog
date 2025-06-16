@@ -21,8 +21,6 @@ public interface PostRepository extends ListCrudRepository<Post, Integer> {
 
     List<Post> findAllByMainAuthorId(Integer authorId);
 
-    //List<Post> findByAuthorLastNameIgnoreCase(String lastName);
-
     @Query("""
             SELECT p.id, p.title, p.content, p.published_on,
                    a.id as main_author_id, a.first_name, a.last_name, a.email, a.username

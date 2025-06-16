@@ -2,6 +2,7 @@ package com.eas.blog.content;
 
 import com.eas.blog.account.domain.Author;
 import com.eas.blog.account.repository.AuthorRepository;
+import com.eas.blog.config.TestcontainersPostgresInitializer;
 import com.eas.blog.content.domain.Post;
 import com.eas.blog.content.domain.PostEditor;
 import com.eas.blog.content.repository.PostRepository;
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
+import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -17,6 +19,7 @@ import java.util.Set;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
+@ContextConfiguration(initializers = TestcontainersPostgresInitializer.class)
 class PostEditorIntegrationTest {
 
     @Autowired
