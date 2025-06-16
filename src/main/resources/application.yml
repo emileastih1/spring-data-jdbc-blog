@@ -14,7 +14,23 @@ spring:
   datasource:
     generate-unique-name: false
     name: blog
+    url: jdbc:postgresql://postgres:5432/blog
+    username: blogger
+    password: blogger
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
 
   # This will create a table (event_publication) to persist the events published in the database
   modulith:
     events.jdbc-schema-initialization.enabled: true
+
+  docker:
+    compose:
+      skip:
+        in-tests: false
+      enabled: true
+      file: classpath:docker/docker-compose.yml
+      lifecycle-management: start_only
