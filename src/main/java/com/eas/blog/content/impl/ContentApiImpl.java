@@ -1,6 +1,8 @@
 package com.eas.blog.content.impl;
 
+import com.eas.blog.account.application.dto.Editors;
 import com.eas.blog.content.ContentApi;
+import com.eas.blog.content.application.PostEditorManagement;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Post;
 import com.eas.blog.content.dto.PostSimpleView;
@@ -17,7 +19,8 @@ import java.util.Optional;
 @Transactional
 @RequiredArgsConstructor
 public class ContentApiImpl implements ContentApi {
-    public final PostRepository postRepository;
+    private final PostRepository postRepository;
+    private final PostEditorManagement postEditorManagment;
 
     public Post comment(Comment comment) {
         return null;
@@ -35,5 +38,10 @@ public class ContentApiImpl implements ContentApi {
         return Optional.ofNullable(limit)
                 .map(l -> posts.stream().limit(l).toList())
                 .orElse(posts);
+    }
+
+    @Override
+    public List<Editors> findAllEditorsByPostId(Integer postId) {
+        return postEditorManagment.findAllEditorsForPost(postId);
     }
 }
