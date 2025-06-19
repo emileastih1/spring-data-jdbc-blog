@@ -58,5 +58,10 @@ class PostEditorIntegrationTest {
                 .extracting(PostEditor::getEditorId)
                 .containsExactlyInAnyOrder(editor1.getId(), editor2.getId());
     }
+
+    @Test
+    void should_rollback_transaction_when_saving_post_with_editors_fails() {
+
+    }
 }
 

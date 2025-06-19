@@ -5,7 +5,10 @@ import com.eas.blog.content.ContentApi;
 import com.eas.blog.content.application.PostEditorManagement;
 import com.eas.blog.content.domain.Comment;
 import com.eas.blog.content.domain.Post;
+import com.eas.blog.content.domain.PostEditor;
+import com.eas.blog.content.dto.PostCreateRequest;
 import com.eas.blog.content.dto.PostSimpleView;
+import com.eas.blog.content.dto.PostView;
 import com.eas.blog.content.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.jdbc.core.mapping.AggregateReference;
@@ -21,6 +24,7 @@ import java.util.Optional;
 public class ContentApiImpl implements ContentApi {
     private final PostRepository postRepository;
     private final PostEditorManagement postEditorManagment;
+    private final PostMapper postMapper;
 
     public Post comment(Comment comment) {
         return null;
@@ -43,5 +47,19 @@ public class ContentApiImpl implements ContentApi {
     @Override
     public List<Editors> findAllEditorsByPostId(Integer postId) {
         return postEditorManagment.findAllEditorsForPost(postId);
+    }
+
+    @Override
+    public PostView createPostForAuthorWithEditors(Integer mainAuthorId, List<Integer> editorIds, PostCreateRequest postCreateRequest) {
+
+        Post post = postMapper.toPost(postCreateRequest, AggregateReference.to(mainAuthorId));
+
+        editorIds.forEach(editorId ->
+                post.getEditors().add(new PostEditor(editorId))
+        );
+
+        Post saved = postRepository.save(post);
+
+        return postMapper.toPostView(saved);
     }
 }

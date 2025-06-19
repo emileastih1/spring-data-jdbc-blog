@@ -18,6 +18,7 @@ public class Author {
     private final LocalDateTime createdOn;
 
     // Constructor for inserts
+    @Default
     public Author(String name, String email, String bio, String profilePicture) {
 
         Assert.notNull(name, "Name must not be null");

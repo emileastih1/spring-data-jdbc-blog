@@ -23,4 +23,5 @@ public class PostView {
         this.publishedOn = publishedOn;
         this.author = author;
     }
+
 }

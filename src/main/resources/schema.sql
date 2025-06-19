@@ -32,7 +32,7 @@ create table Post
     title          varchar(255) not null,
     content        text         not null,
     created_on     timestamp    not null default current_timestamp,
-    published_on   timestamp    not null,
+    published_on   timestamp    ,
     updated_on     timestamp,
     main_author_id int,
     foreign key (main_author_id) references Author (id)
@@ -53,7 +53,7 @@ create table Comment
     post_id      int       not null,
     user_id      int       not null,
     content      text      not null,
-    published_on timestamp not null default current_timestamp,
+    published_on timestamp default current_timestamp,
     updated_on   timestamp          default current_timestamp,
     foreign key (post_id) references Post (id),
     foreign key (user_id) references Users (id)

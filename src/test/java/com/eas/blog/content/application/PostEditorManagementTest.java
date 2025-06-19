@@ -19,7 +19,7 @@ class PostEditorManagementTest {
     PostEditorManagement postEditorManagement;
 
     @Test
-    void should_return_all_editors_for_post(){
+    void should_return_all_editors_for_post() {
         List<Editors> allEditorsForPost = postEditorManagement.findAllEditorsForPost(1);
         assertNotNull(allEditorsForPost);
     }
